@@ -3,9 +3,15 @@ from rest_framework.serializers import ModelSerializer
 from instituciones.models import Institucion
 
 
-class InstitucionesSerializer(ModelSerializer):
+class InstitucionSerializer(ModelSerializer):
 
     class Meta:
         model = Institucion
-        fields = '__al__'
+        fields = '__all__'
 
+
+class CrearInstitucionSerializer(ModelSerializer):
+
+    class Meta:
+        model = Institucion
+        fields = '__all__'

@@ -3,9 +3,15 @@ from rest_framework.serializers import ModelSerializer
 from profesor.models import Profesor
 
 
-class ProfesoresSerializer(ModelSerializer):
+class ProfesorSerializer(ModelSerializer):
 
     class Meta:
         model = Profesor
-        fields = '__al__'
+        fields = '__all__'
 
+
+class CrearProfesorSerializer(ModelSerializer):
+
+    class Meta:
+        model = Profesor
+        fields = '__all__'

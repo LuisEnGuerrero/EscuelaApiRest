@@ -7,5 +7,11 @@ class EstudianteSerializer(ModelSerializer):
 
     class Meta:
         model = Estudiante
-        fields = '__al__'
+        fields = '__all__'
 
+
+class CrearEstudianteSerializer(ModelSerializer):
+
+    class Meta:
+        model = Estudiante
+        fields = '__all__'

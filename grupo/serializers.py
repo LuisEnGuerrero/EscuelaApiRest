@@ -7,5 +7,11 @@ class GrupoSerializer(ModelSerializer):
 
     class Meta:
         model = Grupo
-        fields = '__al__'
+        fields = '__all__'
 
+
+class CrearGrupoSerializer(ModelSerializer):
+
+    class Meta:
+        model = Grupo
+        fields = '__all__'
