@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -45,7 +46,9 @@ INSTALLED_APPS = [
     'materias.apps.MateriasConfig',
     'tareas.apps.TareasConfig',
     'rest_framework',
-]
+    'drf_yasg',
+]     #'django.contrib.staticfiles',  # required for serving swagger ui's css/js files
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,12 +84,42 @@ WSGI_APPLICATION = 'Escuela.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+"""
+
+
+DATABASE = {
+    "default": {
+       "ENGINE": 'django_mongodb_engine',
+       "NAME": 'akasha_db',
+       "HOST": 'mongodb+srv://StarFiveTeam:666JyzE3nEK.UDx@akasha-db.cpnnt.mongodb.net/akasha_db?retryWrites=true&w=majority',
+       "USER": 'StarFiveTeam',
+       "PASSWORD": '666JyzE3nEK.UDx',
+       "OPTIONS": "SCRAM-SHA-1",
+    }
+}
+
+DATABASE = {
+    "default": {
+        "ENGINE": 'djongo',
+        "CLIENT": {
+           "name": 'akasha_db',
+           "host": 'mongodb+srv://StarFiveTeam:666JyzE3nEK.UDx@akasha-db.cpnnt.mongodb.net/akasha_db',
+           "username": 'StarFiveTeam',
+           "password": '666JyzE3nEK.UDx',
+           "authMechanism": "SCRAM-SHA-1",
+        },
+    }
+}
+
+
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.socrates'),
     }
 }
+
 
 
 # Password validation
@@ -126,3 +159,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
+} #IsAuthenticated, AllowAny}
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '5d1a9936087c9d'
+EMAIL_HOST_PASSWORD = '741fb8c1b6068f'
+EMAIL_PORT = '2525'
+
+CELERY_BROKER_URL = 'amqp://guest:guest@127.0.0.1:5672/'

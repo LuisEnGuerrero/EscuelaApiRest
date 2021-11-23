@@ -23,7 +23,7 @@ class Grupo(models.Model):
         null=True,
         related_name='grupo',
     )
-    #docentes = models.ManyToManyField(Profesor, related_name='profesores')
+    #tareas = models.ManyToManyField(Profesor, related_name='profesores')
 
 
     def __str__(self):

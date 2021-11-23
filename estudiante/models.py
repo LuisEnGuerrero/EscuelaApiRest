@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -21,6 +22,16 @@ class Estudiante(models.Model):
         related_name='estudiantes',
     )
     #Grupos = models.OneToOneField(Grupo, related_name='grupo')
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+
 
     def __str__(self):
         return f'{self.nombres} {self.apellidos} | {self.institucion}'
+
+    class Meta:
+        managed = False
+        db_table = 'estudiante'

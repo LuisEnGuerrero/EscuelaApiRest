@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -17,6 +18,12 @@ class Tarea(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         related_name='tareas',
+    )
+    creada_por = models.ForeignKey(
+        User,
+        related_name='tareas_creadas',
+        on_delete=models.SET_NULL,
+        null=True
     )
 
     def __str__(self):
